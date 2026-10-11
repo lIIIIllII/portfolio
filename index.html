@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="이지훈 Lee Ji Hoon · Software Developer 포트폴리오. 웹, AI 에이전트, 컴퓨터 비전 프로젝트.">
+<title>이지훈 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 한 줄로 흐르는 이력서형 페이지. 넓은 여백, 왼쪽 정렬, 프로젝트는 목업 프레임 + 스펙 시트로 구성 */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --fg: #121419;
+  --muted: #5d6370;
+  --line: #e1e4ea;
+  --accent: #2f4bff;
+  --accent-soft: #eceffe;
+  --frame: #1b1d22;
+  --font-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --wrap: 1080px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1013; --surface: #17191e; --fg: #eceef2; --muted: #9aa0ad;
+    --line: #2a2d35; --accent: #8a9bff; --accent-soft: #1d2236; --frame: #0a0b0d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1013; --surface: #17191e; --fg: #eceef2; --muted: #9aa0ad;
+  --line: #2a2d35; --accent: #8a9bff; --accent-soft: #1d2236; --frame: #0a0b0d;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
+.mono { font-family: var(--font-mono); }
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; }
+.brand { font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
+.brand span { font-family: var(--font-mono); font-weight: 400; font-size: 12px; color: var(--muted); margin-left: 8px; }
+.nav { display: flex; gap: clamp(14px, 3vw, 28px); font-size: 14px; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--fg); }
+
+/* Hero */
+.hero { padding-block: clamp(64px, 11vw, 120px) clamp(48px, 7vw, 80px); }
+.hero .label { display: block; margin-bottom: 20px; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 8vw, 84px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  margin: 0;
+  text-wrap: balance;
+}
+.hero h1 .en { display: block; font-weight: 400; color: var(--muted); font-size: 0.42em; letter-spacing: -0.01em; margin-top: 14px; }
+.role { margin: 36px 0 0; font-size: clamp(20px, 2.6vw, 26px); font-weight: 600; letter-spacing: -0.015em; }
+.role .tracks { display: inline-flex; flex-wrap: wrap; gap: 8px; margin-left: 4px; vertical-align: middle; }
+.lede { margin: 14px 0 0; max-width: 34em; color: var(--muted); font-size: 17px; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 36px; font-size: 14px; }
+.hero-meta div { display: flex; gap: 10px; align-items: baseline; }
+
+.track {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 3px 10px;
+  border-radius: 999px;
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+/* Section heads */
+section { scroll-margin-top: 72px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--fg); padding-top: 18px; margin-bottom: 32px; }
+.section-head h2 { margin: 0; font-size: 22px; letter-spacing: -0.02em; }
+
+/* Filter */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button {
+  font: 500 13px var(--font-body);
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.filters button:hover { color: var(--fg); border-color: var(--muted); }
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.filters .count { font-family: var(--font-mono); font-size: 11px; margin-left: 4px; opacity: 0.7; }
+
+/* Project index */
+.index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 36px); margin-bottom: clamp(72px, 10vw, 120px); }
+@media (max-width: 720px) { .index { grid-template-columns: minmax(0, 1fr); } }
+.card { text-decoration: none; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.card .thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  max-width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 7%;
+}
+.card .thumb img { width: 100%; height: 100%; object-fit: contain; }
+.card .thumb .pair { display: flex; gap: 4%; width: 100%; height: 100%; justify-content: center; align-items: center; }
+.card .thumb .pair img { width: auto; height: auto; max-width: 46%; max-height: 100%; object-fit: contain; }
+/* Hover: 탐지 박스처럼 모서리 브래킷이 잡힘 */
+.card .thumb::before, .card .thumb::after {
+  content: ""; position: absolute; inset: 12px; pointer-events: none;
+  opacity: 0; transition: opacity .2s, inset .2s;
+  background:
+    linear-gradient(var(--accent), var(--accent)) top left / 18px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top left / 2px 18px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top right / 18px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top right / 2px 18px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left / 18px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left / 2px 18px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom right / 18px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom right / 2px 18px no-repeat;
+}
+.card .thumb::after { display: none; }
+.card:hover .thumb::before, .card:focus-visible .thumb::before { opacity: 1; inset: 8px; }
+.card .tag {
+  position: absolute; left: 8px; top: 8px;
+  font: 500 11px var(--font-mono);
+  background: var(--accent); color: var(--surface);
+  padding: 1px 6px; border-radius: 2px;
+  opacity: 0; transition: opacity .2s;
+}
+.card:hover .tag, .card:focus-visible .tag { opacity: 1; }
+.card-body { display: grid; gap: 6px; }
+.card-top { display: flex; justify-content: space-between; gap: 12px; }
+.card h3 { margin: 0; font-size: 21px; letter-spacing: -0.02em; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* Project detail */
+.project { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var(--line); }
+.project-head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; margin-bottom: 40px; }
+@media (max-width: 820px) { .project-head { grid-template-columns: minmax(0, 1fr); } }
+.project-head h3 { margin: 10px 0 12px; font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; }
+.project-head .summary { margin: 0; color: var(--muted); max-width: 32em; }
+.spec { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); border-top: 1px solid var(--line); font-size: 14px; }
+.spec dt, .spec dd { margin: 0; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.spec dt { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-right: 24px; letter-spacing: 0.04em; padding-top: 11px; }
+
+/* Mockup frames */
+.stage { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(18px, 5vw, 56px); margin-bottom: 48px; overflow: hidden; }
+.browser { max-width: 880px; margin: 0 auto; border-radius: 10px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 0 var(--line), 0 24px 48px -24px rgba(16, 20, 40, 0.28); border: 1px solid var(--line); }
+.browser .bar { display: flex; align-items: center; gap: 12px; height: 34px; padding: 0 12px; background: var(--frame); }
+.browser .dots { display: flex; gap: 6px; }
+.browser .dots i { width: 9px; height: 9px; border-radius: 50%; background: #3a3d45; display: block; }
+.browser .url { flex: 1; min-width: 0; font: 11px var(--font-mono); color: #9aa0ad; background: #26282e; border-radius: 4px; padding: 3px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 360px; margin: 0 auto; text-align: center; }
+.browser img { width: 100%; }
+
+/* CV viewfinder frame */
+.viewfinder { position: relative; background: var(--frame); border-radius: 6px; padding: 34px 18px 18px; max-width: 760px; margin: 0 auto; }
+.viewfinder .hud { position: absolute; left: 18px; right: 18px; top: 9px; display: flex; justify-content: space-between; gap: 12px; font: 11px var(--font-mono); color: #9aa0ad; white-space: nowrap; overflow: hidden; }
+.viewfinder .rec { display: inline-flex; align-items: center; gap: 6px; color: #e8eaee; }
+.viewfinder .rec::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #ff4d4d; animation: blink 1.6s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+.viewfinder .lens { position: relative; }
+.viewfinder .lens::before {
+  content: ""; position: absolute; inset: -6px; pointer-events: none; z-index: 1;
+  background:
+    linear-gradient(#e8eaee, #e8eaee) top left / 22px 2px no-repeat,
+    linear-gradient(#e8eaee, #e8eaee) top left / 2px 22px no-repeat,
+    linear-gradient(#e8eaee, #e8eaee) top right / 22px 2px no-repeat,
+    linear-gradient(#e8eaee, #e8eaee) top right / 2px 22px no-repeat,
+    linear-gradient(#e8eaee, #e8eaee) bottom left / 22px 2px no-repeat,
+    linear-gradient(#e8eaee, #e8eaee) bottom left / 2px 22px no-repeat,
+    linear-gradient(#e8eaee, #e8eaee) bottom right / 22px 2px no-repeat,
+    linear-gradient(#e8eaee, #e8eaee) bottom right / 2px 22px no-repeat;
+}
+.viewfinder .lens img { width: 100%; border-radius: 2px; }
+.viewfinder .lens.pair { display: flex; gap: 14px; justify-content: center; background: #ffffff; padding: 18px; border-radius: 2px; }
+.viewfinder .lens.pair img { width: auto; max-height: 340px; min-width: 0; flex: 0 1 auto; object-fit: contain; }
+
+/* Body columns */
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 56px; }
+@media (max-width: 820px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.block h4 { margin: 0 0 14px; font-size: 13px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.list li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; }
+.list li::before { content: ""; width: 6px; height: 6px; margin-top: 10px; background: var(--fg); }
+.list b { font-weight: 600; }
+.ai { background: var(--accent-soft); border-radius: 6px; padding: 24px clamp(18px, 3vw, 28px); }
+.ai h4 { color: var(--accent); }
+.ai .list li::before { background: var(--accent); }
+
+.stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 40px; }
+.extra { margin-top: 48px; }
+.links { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 14px; }
+.links a { text-decoration: none; border-bottom: 1px solid var(--fg); padding-bottom: 1px; }
+.links .private { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
+
+/* Diagrams */
+.diagram { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); padding: 24px; }
+.diagram-title { margin: 0 0 16px; font-size: 13px; color: var(--muted); }
+.flow { display: flex; align-items: stretch; gap: 0; min-width: 760px; }
+.flow .step { flex: 1; border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; font-size: 13px; line-height: 1.45; background: var(--bg); }
+.flow .step .n { display: block; font: 11px var(--font-mono); color: var(--muted); margin-bottom: 4px; }
+.flow .step.human { border-color: var(--fg); background: var(--surface); }
+.flow .arrow { flex: 0 0 22px; display: grid; place-items: center; color: var(--muted); font-size: 13px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 12px; border: 1px solid var(--line); background: var(--bg); display: inline-block; border-radius: 2px; }
+.legend i.h { border-color: var(--fg); background: var(--surface); }
+
+.roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; min-width: 0; }
+@media (max-width: 720px) { .roles { grid-template-columns: minmax(0, 1fr); } }
+.roles div { border-top: 2px solid var(--fg); padding-top: 10px; font-size: 14px; }
+.roles div.agent { border-color: var(--accent); }
+.roles strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.roles p { margin: 0; color: var(--muted); }
+
+.arch { display: grid; grid-template-columns: repeat(3, minmax(170px, 1fr)); gap: 0 28px; min-width: 620px; position: relative; }
+.arch .node { border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; background: var(--bg); font-size: 13px; line-height: 1.5; position: relative; }
+.arch .node b { display: block; font-size: 14px; margin-bottom: 2px; }
+.arch .node .mono { font-size: 11px; color: var(--muted); }
+.arch .node.mine { border-color: var(--accent); background: var(--accent-soft); }
+.arch .node.link::after { content: "→"; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.arch .db { grid-column: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 28px; position: relative; }
+.arch .db::before { content: "↓"; position: absolute; top: -24px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 13px; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(72px, 10vw, 120px); }
+.skill-row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+@media (max-width: 620px) { .skill-row { grid-template-columns: minmax(0, 1fr); } }
+.skill-row .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Contact */
+.contact { padding-block: 0 clamp(64px, 10vw, 112px); }
+.contact-grid { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0 32px; font-size: 18px; }
+.contact-grid > * { padding: 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.contact-grid .label { padding-top: 19px; }
+.contact-grid .val { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; overflow-wrap: anywhere; }
+.copy { font: 500 12px var(--font-mono); background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.copy:hover { color: var(--fg); border-color: var(--muted); }
+.site-footer { border-top: 1px solid var(--line); padding-block: 24px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">이지훈<span>Lee Ji Hoon</span></a>
+    <nav class="nav" aria-label="섹션">
+      <a href="#projects">프로젝트</a>
+      <a href="#skills">기술</a>
+      <a href="#contact">연락처</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <span class="label">Portfolio · 2026</span>
+    <h1>이지훈<span class="en">Lee Ji Hoon</span></h1>
+    <p class="role">Software Developer</p>
+    <p class="lede">웹 서비스, AI 에이전트, 컴퓨터 비전 프로젝트를 기획부터 구현까지 직접 만들어 왔습니다. 문제를 작게 나누고, 실제로 동작하는 시스템으로 완성하는 일을 좋아합니다.</p>
+    <div class="hero-meta">
+      <div><span class="label">Focus</span><span class="tracks" style="display:inline-flex;flex-wrap:wrap;gap:6px"><span class="track">Web · Full-stack</span><span class="track">AI Agent</span><span class="track">Computer Vision</span></span></div>
+      <div><span class="label">School</span><span>창신대학교 컴퓨터 전공</span></div>
+    </div>
+  </div>
+
+  <section id="projects" class="wrap">
+    <div class="section-head">
+      <h2>프로젝트</h2>
+      <div class="filters" role="group" aria-label="프로젝트 분류">
+        <button type="button" id="f-all" data-filter="all" aria-pressed="true">전체<span class="count">4</span></button>
+        <button type="button" id="f-agent" data-filter="agent" aria-pressed="false">AI Agent<span class="count">1</span></button>
+        <button type="button" id="f-web" data-filter="web" aria-pressed="false">Web · AI<span class="count">1</span></button>
+        <button type="button" id="f-cv" data-filter="cv" aria-pressed="false">Computer Vision<span class="count">2</span></button>
+      </div>
+    </div>
+
+    <!-- 프로젝트를 추가할 때: 아래 .index 에 카드 하나, 그리고 상세 <article class="project"> 하나를 같은 data-cat 으로 추가 -->
+    <div class="index">
+      <a class="card" href="#safe-orch" data-cat="agent">
+        <div class="thumb"><span class="tag">ai_agent 0.98</span><img src="assets/img/safe-orch-timeline.png" alt="SAFE-ORCH 작업 타임라인 화면"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="label">AI Agent · 개인</span><span class="label">2026.09–10</span></div>
+          <h3>SAFE-ORCH</h3>
+          <p>작업 일정 충돌을 멀티 에이전트가 풀고, 사람은 안을 골라 승인하는 시스템</p>
+        </div>
+      </a>
+      <a class="card" href="#finshield" data-cat="web">
+        <div class="thumb"><span class="tag">fraud_check 0.63</span><img src="assets/img/finshield-transfer.png" alt="FinShield 송금 화면과 AI 위험도 분석"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="label">Web · AI · 팀 5명</span><span class="label">2026.03–진행 중</span></div>
+          <h3>FinShield</h3>
+          <p>송금 순간 AI가 위험도를 판단해 금융사기를 막는 서비스</p>
+        </div>
+      </a>
+      <a class="card" href="#recycle" data-cat="cv">
+        <div class="thumb"><span class="tag">recycle 0.74</span><img src="assets/img/recycle-detect.jpg" alt="분리수거 판독기 실시간 탐지 화면"></div>
+        <div class="card-body">
+          <div class="card-top"><span class="label">Computer Vision · 팀장</span><span class="label">2025.12</span></div>
+          <h3>분리수거 판독기</h3>
+          <p>카메라에 비친 쓰레기를 5가지로 실시간 분류하는 웹 모니터링</p>
+        </div>
+      </a>
+      <a class="card" href="#emotion" data-cat="cv">
+        <div class="thumb"><span class="tag">happy 0.70</span><div class="pair"><img src="assets/img/emotion-happy.jpg" alt="happy로 분류된 얼굴"><img src="assets/img/emotion-angry.jpg" alt="angry로 분류된 얼굴"></div></div>
+        <div class="card-body">
+          <div class="card-top"><span class="label">Computer Vision · 개인</span><span class="label">2026.06</span></div>
+          <h3>얼굴 감정 인식 시스템</h3>
+          <p>얼굴 표정을 7가지 감정으로 분류해 실시간으로 시각화</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== SAFE-ORCH ===== -->
+  <article class="project" id="safe-orch" data-cat="agent">
+    <div class="wrap">
+      <div class="project-head">
+        <div>
+          <span class="label">AI Agent · Web</span>
+          <h3>SAFE-ORCH</h3>
+          <p class="summary">여러 업체가 같은 구역과 장비를 나눠 쓰는 현장에서 작업 일정이 부딪히면, AI 에이전트가 해결안을 만들고 사람은 그중 하나를 골라 승인합니다. 데모 현장은 조선소 원·하청 혼재작업입니다.</p>
+        </div>
+        <dl class="spec">
+          <dt>기간</dt><dd>2026.09.28 – 2026.10.05</dd>
+          <dt>구분</dt><dd>개인 프로젝트 · 기획, 설계, 개발 전체</dd>
+          <dt>출품</dt><dd>제4회 경남 AI·SW 경진대회 (대학부)</dd>
+          <dt>형태</dt><dd>웹 애플리케이션</dd>
+        </dl>
+      </div>
+
+      <div class="stage">
+        <div class="browser">
+          <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">safe-orch · 타임라인</div></div>
+          <img src="assets/img/safe-orch-timeline.png" alt="구역별 작업이 시간축에 배치되고 충돌 구간이 표시된 타임라인">
+        </div>
+      </div>
+
+      <div class="cols">
+        <div class="block">
+          <h4>주요 기능</h4>
+          <ul class="list">
+            <li><span><b>일정 넣기</b> · 새 일정이 들어오면 기존 일정과의 충돌을 묶어 검토하고, 세 방향의 해결안을 나란히 비교</span></li>
+            <li><span><b>자연어 요청</b> · 문장으로 작업을 요청하면 에이전트가 작업 값을 해석해 생성. 스스로 정한 값은 카드에 표시되어 바로 수정 가능</span></li>
+            <li><span><b>지연 신고</b> · 신고 즉시 승인을 잠그고, 어떤 작업이 얼마나 밀리는지 분석해 사실 수정안을 제시</span></li>
+            <li><span><b>협의와 승인</b> · 담당자별 변경 요청, 항목별 수락과 이견, 감독자의 최종 승인과 확정 통지</span></li>
+          </ul>
+        </div>
+        <div class="block ai">
+          <h4>AI 활용</h4>
+          <ul class="list">
+            <li><span><b>멀티 에이전트 구조</b> · 메인 에이전트가 상황을 보고 작업 접수, 일정 검토, 재계획, 협의, 신고 대응 5개 전문 에이전트를 호출</span></li>
+            <li><span><b>병렬 재계획</b> · 재계획 에이전트 3개를 기존 위주, 추가 위주, 적절하게 세 방향으로 동시에 실행. 같은 결과는 하나로 합쳐 표시</span></li>
+            <li><span><b>이견 반영</b> · 담당자가 남긴 이견 사유를 시간·자원 조건으로 바꿔 다시 계획</span></li>
+            <li><span><b>근거의 분리</b> · 변경 작업 수 같은 숫자는 서버가 계산하고, 에이전트의 글은 의견으로 따로 보여 판단 근거를 투명하게 유지</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="extra">
+        <div class="diagram">
+          <p class="diagram-title">일정 넣기 흐름</p>
+          <div class="flow">
+            <div class="step"><span class="n">01</span>일정 넣기</div><div class="arrow">→</div>
+            <div class="step"><span class="n">02</span>메인 에이전트</div><div class="arrow">→</div>
+            <div class="step"><span class="n">03</span>일정 검토<br>충돌 묶기</div><div class="arrow">→</div>
+            <div class="step"><span class="n">04</span>재계획 ×3<br>병렬 실행</div><div class="arrow">→</div>
+            <div class="step human"><span class="n">05</span>감독자<br>안 고르기</div><div class="arrow">→</div>
+            <div class="step"><span class="n">06</span>협의<br>담당자 확인</div><div class="arrow">→</div>
+            <div class="step human"><span class="n">07</span>감독자<br>승인·확정</div>
+          </div>
+          <div class="legend"><span><i></i>에이전트</span><span><i class="h"></i>사람만 할 수 있는 단계</span></div>
+          <div class="roles">
+            <div><strong>서버</strong><p>권한, 안전 검사, 충돌 찾기, 배치 계산, 검증처럼 경계만 담당</p></div>
+            <div class="agent"><strong>에이전트</strong><p>무엇을 먼저 할지, 모호한 요청을 어떻게 해석할지 판단</p></div>
+            <div><strong>사람</strong><p>작업 고정, 안 고르기, 승인. 에이전트에게는 이 도구가 없음</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <span class="track">React</span><span class="track">TypeScript</span><span class="track">Vite</span>
+        <span class="track">Python</span><span class="track">FastAPI</span><span class="track">LangGraph</span>
+        <span class="track">LangChain</span><span class="track">OpenAI API</span><span class="track">CP-SAT</span><span class="track">SQLite</span>
+      </div>
+      <div class="links"><a href="https://github.com/lIIIIllII/safe-orch" target="_blank" rel="noopener">GitHub 저장소 ↗</a></div>
+    </div>
+  </article>
+
+  <!-- ===== FinShield ===== -->
+  <article class="project" id="finshield" data-cat="web">
+    <div class="wrap">
+      <div class="project-head">
+        <div>
+          <span class="label">Web · Full-stack · AI</span>
+          <h3>FinShield</h3>
+          <p class="summary">송금하는 순간 AI가 거래의 위험도를 분석하고, 위험한 거래는 경고하거나 보호자 승인을 거치게 해 금융 취약계층의 사기 피해를 막는 서비스입니다.</p>
+        </div>
+        <dl class="spec">
+          <dt>기간</dt><dd>2026.03 – 진행 중 (캡스톤 디자인)</dd>
+          <dt>구분</dt><dd>팀 프로젝트 · 5명</dd>
+          <dt>담당</dt><dd>송금·거래 백엔드, AI 모델과 추론 서버, 전체 CRUD (8개 파일, 56개 함수)</dd>
+          <dt>형태</dt><dd>웹 애플리케이션</dd>
+        </dl>
+      </div>
+
+      <div class="stage">
+        <div class="browser">
+          <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">finshield · 송금</div></div>
+          <img src="assets/img/finshield-transfer.png" alt="송금 정보 확인 단계에서 AI 위험도 63%가 표시된 화면">
+        </div>
+      </div>
+
+      <div class="cols">
+        <div class="block">
+          <h4>주요 기능</h4>
+          <ul class="list">
+            <li><span><b>위험도 기반 송금</b> · 송금 확인 단계에서 AI 위험도를 보여주고, 위험 수준에 따라 경고 또는 보호자 승인으로 처리</span></li>
+            <li><span><b>보호자 승인</b> · 위험 거래는 보호자가 승인해야 실행되고, 거절되면 잔액 변동 없이 차단</span></li>
+            <li><span><b>재송금 차단과 냉각 기간</b> · 승인 대기 중인 거래가 있으면 추가 송금을 막아 연속 피해를 방지</span></li>
+            <li><span><b>참여형 블랙리스트</b> · 같은 계좌에 신고가 5건 쌓이면 자동으로 블랙리스트 등록</span></li>
+          </ul>
+        </div>
+        <div class="block ai">
+          <h4>AI 활용</h4>
+          <ul class="list">
+            <li><span><b>하이브리드 위험 점수</b> · XGBoost 이상거래 탐지 모델과 리스크 모델의 결과를 결합해 최종 위험도 산출</span></li>
+            <li><span><b>개인 행동 기준선</b> · 사용자별 평소 거래 패턴을 저장해 두고, 평소와 다른 거래를 따로 감지</span></li>
+            <li><span><b>설명 가능한 AI</b> · SHAP으로 위험 판단의 근거를 뽑아 사용자가 이해할 수 있는 한국어 설명으로 변환</span></li>
+            <li><span><b>모델 선택의 이유</b> · 밀리초 단위 추론 속도, 판단 근거 해석, 정형 데이터 적합성을 기준으로 딥러닝 대신 XGBoost 선택. 금융 데이터 보안을 위해 외부 LLM API는 사용하지 않음</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="extra">
+        <div class="diagram">
+          <p class="diagram-title">시스템 구성 · 파란 칸이 직접 담당한 부분</p>
+          <div class="arch">
+            <div class="node link"><b>웹 클라이언트</b>React · Vite<br><span class="mono">송금 · 계좌 · 신고 · 보호자 관리</span></div>
+            <div class="node mine link"><b>백엔드 API</b>FastAPI · JWT 인증<br><span class="mono">송금·거래 처리, 전체 CRUD</span></div>
+            <div class="node mine"><b>AI 추론 서버</b>FastAPI · XGBoost · SHAP<br><span class="mono">위험도 분석, 근거 설명</span></div>
+            <div class="db">
+              <div class="node"><b>TiDB Cloud</b><span class="mono">계좌, 거래, 사용자</span></div>
+              <div class="node"><b>MongoDB Atlas</b><span class="mono">개인 행동 기준선</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <span class="track">React</span><span class="track">Vite</span><span class="track">Python</span>
+        <span class="track">FastAPI</span><span class="track">httpx</span><span class="track">XGBoost</span><span class="track">SHAP</span>
+        <span class="track">TiDB Cloud</span><span class="track">MongoDB Atlas</span><span class="track">JWT · bcrypt</span>
+      </div>
+      <div class="links"><span class="private">팀 비공개 저장소</span></div>
+    </div>
+  </article>
+
+  <!-- ===== 분리수거 판독기 ===== -->
+  <article class="project" id="recycle" data-cat="cv">
+    <div class="wrap">
+      <div class="project-head">
+        <div>
+          <span class="label">Computer Vision · Web</span>
+          <h3>분리수거 판독기</h3>
+          <p class="summary">카메라에 비친 쓰레기를 배터리, 금속, 판지, 유리, 플라스틱 5가지로 실시간 분류해 웹 화면에 표시하고, 탐지 기록을 차트와 CSV로 정리하는 모니터링 서비스입니다.</p>
+        </div>
+        <dl class="spec">
+          <dt>기간</dt><dd>2025.12 (설계 프로젝트)</dd>
+          <dt>구분</dt><dd>팀 프로젝트 · 2명, 팀장</dd>
+          <dt>형태</dt><dd>웹 애플리케이션 (Flask)</dd>
+          <dt>분류</dt><dd class="mono" style="font-size:13px">battery · metal · cardboard · glass · plastic</dd>
+        </dl>
+      </div>
+
+      <div class="stage">
+        <div class="viewfinder">
+          <div class="hud"><span class="rec">LIVE</span><span>YOLOv8n · 5 classes</span></div>
+          <div class="lens"><img src="assets/img/recycle-detect.jpg" alt="유리병은 glass, 실습 장비는 metal로 탐지된 실시간 화면"></div>
+        </div>
+      </div>
+
+      <div class="cols">
+        <div class="block">
+          <h4>주요 기능</h4>
+          <ul class="list">
+            <li><span><b>실시간 탐지</b> · 웹캠이나 영상 파일을 스트리밍으로 받아 프레임마다 객체를 탐지</span></li>
+            <li><span><b>탐지 결과 표시</b> · 객체마다 경계 상자와 분류 이름, 신뢰도를 화면에 표시</span></li>
+            <li><span><b>기록 시각화</b> · 탐지된 분류를 시간과 함께 기록하고 원형 차트로 비율 표시</span></li>
+            <li><span><b>CSV 내보내기</b> · 분류명, 신뢰도, 탐지 시각을 CSV 파일로 저장</span></li>
+          </ul>
+        </div>
+        <div class="block ai">
+          <h4>AI 활용</h4>
+          <ul class="list">
+            <li><span><b>데이터셋 구축</b> · Roboflow로 분리수거 이미지 데이터셋을 구성해 약 9,000장으로 학습</span></li>
+            <li><span><b>모델 학습과 조정</b> · YOLOv8n을 학습시키고 epochs, 입력 크기, 배치 크기를 조정해 성능 개선</span></li>
+            <li><span><b>서버 추론</b> · 학습한 모델을 Flask 서버에 올려 들어오는 프레임을 분석하고 결과를 웹에 바로 반영</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stack">
+        <span class="track">Python</span><span class="track">YOLOv8</span><span class="track">OpenCV</span>
+        <span class="track">Roboflow</span><span class="track">Flask</span><span class="track">HTML</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== 얼굴 감정 인식 ===== -->
+  <article class="project" id="emotion" data-cat="cv">
+    <div class="wrap">
+      <div class="project-head">
+        <div>
+          <span class="label">Computer Vision · Desktop</span>
+          <h3>얼굴 감정 인식 시스템</h3>
+          <p class="summary">카메라 속 얼굴의 표정을 7가지 감정으로 분류하고, 감정마다 다른 색의 상자와 얼굴 윤곽 그림으로 실시간 표시하는 프로그램입니다.</p>
+        </div>
+        <dl class="spec">
+          <dt>기간</dt><dd>2026.06 (컴퓨터비전 과목 과제)</dd>
+          <dt>구분</dt><dd>개인 프로젝트</dd>
+          <dt>형태</dt><dd>데스크톱 실시간 애플리케이션</dd>
+          <dt>성능</dt><dd>FER2013 기준 Top-1 정확도 약 70%</dd>
+        </dl>
+      </div>
+
+      <div class="stage">
+        <div class="viewfinder">
+          <div class="hud"><span class="rec">LIVE</span><span>YOLOv8s-cls · Cartoon mode</span></div>
+          <div class="lens pair"><img src="assets/img/emotion-happy.jpg" alt="happy로 분류되어 초록 상자로 표시된 얼굴 윤곽"><img src="assets/img/emotion-angry.jpg" alt="angry로 분류되어 빨간 상자로 표시된 얼굴 윤곽"></div>
+        </div>
+      </div>
+
+      <div class="cols">
+        <div class="block">
+          <h4>주요 기능</h4>
+          <ul class="list">
+            <li><span><b>실시간 감정 분류</b> · 얼굴을 찾아 감정을 분류하고, 감정별로 색을 달리한 상자로 표시</span></li>
+            <li><span><b>두 가지 시각화 모드</b> · 얼굴 윤곽을 그림처럼 그리는 Cartoon 모드와 얼굴 메시를 그리는 Mesh 모드</span></li>
+            <li><span><b>스마트폰 카메라 입력</b> · PC 웹캠뿐 아니라 스마트폰 카메라를 연결해 입력으로 사용</span></li>
+            <li><span><b>화면 캡처</b> · 분석 중인 장면을 이미지로 저장</span></li>
+          </ul>
+        </div>
+        <div class="block ai">
+          <h4>AI 활용</h4>
+          <ul class="list">
+            <li><span><b>분류 모델 학습</b> · FER2013 데이터셋으로 YOLOv8s-cls 모델을 직접 학습 (RTX 4060 Ti)</span></li>
+            <li><span><b>얼굴 랜드마크</b> · MediaPipe Face Mesh로 얼굴 특징점을 추출해 윤곽 그림과 메시 시각화에 활용</span></li>
+            <li><span><b>실시간 파이프라인</b> · 얼굴 위치 찾기, 감정 분류, 시각화를 한 프레임 안에서 처리</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stack">
+        <span class="track">Python</span><span class="track">OpenCV</span><span class="track">YOLOv8-cls</span>
+        <span class="track">MediaPipe</span><span class="track">FER2013</span>
+      </div>
+    </div>
+  </article>
+
+  <section id="skills" class="wrap" style="padding-top: clamp(72px, 10vw, 120px)">
+    <div class="section-head"><h2>기술</h2><span class="label">프로젝트에서 직접 사용한 기술</span></div>
+    <div class="skills">
+      <div class="skill-row"><span class="label">Language</span><div class="chips"><span class="track">Python</span><span class="track">TypeScript</span><span class="track">JavaScript</span><span class="track">HTML · CSS</span></div></div>
+      <div class="skill-row"><span class="label">Backend</span><div class="chips"><span class="track">FastAPI</span><span class="track">Flask</span><span class="track">REST API</span><span class="track">JWT 인증</span></div></div>
+      <div class="skill-row"><span class="label">Frontend</span><div class="chips"><span class="track">React</span><span class="track">Vite</span></div></div>
+      <div class="skill-row"><span class="label">AI Agent</span><div class="chips"><span class="track">LangGraph</span><span class="track">LangChain</span><span class="track">OpenAI API</span><span class="track">CP-SAT</span></div></div>
+      <div class="skill-row"><span class="label">Machine Learning</span><div class="chips"><span class="track">XGBoost</span><span class="track">SHAP</span></div></div>
+      <div class="skill-row"><span class="label">Computer Vision</span><div class="chips"><span class="track">YOLOv8</span><span class="track">OpenCV</span><span class="track">MediaPipe</span><span class="track">Roboflow</span></div></div>
+      <div class="skill-row"><span class="label">Database</span><div class="chips"><span class="track">SQLite</span><span class="track">TiDB Cloud</span><span class="track">MongoDB Atlas</span></div></div>
+      <div class="skill-row"><span class="label">Tools</span><div class="chips"><span class="track">Git · GitHub</span><span class="track">uv</span><span class="track">Claude Code</span></div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap contact">
+    <div class="section-head"><h2>연락처</h2></div>
+    <div class="contact-grid">
+      <span class="label">Email</span>
+      <span class="val"><span id="email">lee33197674@gmail.com</span><button type="button" class="copy" id="copy-email">복사</button></span>
+      <span class="label">GitHub</span>
+      <span class="val"><a href="https://github.com/lIIIIllII" target="_blank" rel="noopener">github.com/lIIIIllII</a></span>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="wrap">© 2026 이지훈</div></footer>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.filters button');
+  var items = document.querySelectorAll('[data-cat]');
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = btn.dataset.filter;
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      items.forEach(function (el) { el.hidden = !(f === 'all' || el.dataset.cat === f); });
+    });
+  });
+
+  var copyBtn = document.getElementById('copy-email');
+  copyBtn.addEventListener('click', function () {
+    var text = document.getElementById('email').textContent;
+    var done = function () { copyBtn.textContent = '복사됨'; setTimeout(function () { copyBtn.textContent = '복사'; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = '선택됨';
+    };
+    try {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
