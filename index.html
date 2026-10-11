@@ -102,11 +102,7 @@ a { color: inherit; }
 
 .track {
   font-family: var(--font-mono);
-  font-size: 12px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  padding: 3px 10px;
-  border-radius: 999px;
+  font-size: 13px;
   color: var(--fg);
   white-space: nowrap;
 }
@@ -117,18 +113,18 @@ section { scroll-margin-top: 72px; }
 .section-head h2 { margin: 0; font-size: 22px; letter-spacing: -0.02em; }
 
 /* Filter */
-.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters { display: flex; flex-wrap: wrap; gap: 4px 20px; }
 .filters button {
-  font: 500 13px var(--font-body);
+  font: 500 14px var(--font-body);
   color: var(--muted);
   background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 6px 14px;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  padding: 2px 0;
   cursor: pointer;
 }
-.filters button:hover { color: var(--fg); border-color: var(--muted); }
-.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.filters button:hover { color: var(--fg); }
+.filters button[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--fg); }
 .filters .count { font-family: var(--font-mono); font-size: 11px; margin-left: 4px; opacity: 0.7; }
 
 /* Project index */
@@ -140,8 +136,6 @@ section { scroll-margin-top: 72px; }
   aspect-ratio: 16 / 10;
   max-width: 100%;
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -190,8 +184,8 @@ section { scroll-margin-top: 72px; }
 .spec dt { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-right: 24px; letter-spacing: 0.04em; padding-top: 11px; }
 
 /* Mockup frames */
-.stage { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(18px, 5vw, 56px); margin-bottom: 48px; overflow: hidden; }
-.browser { max-width: 880px; margin: 0 auto; border-radius: 10px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 0 var(--line), 0 24px 48px -24px rgba(16, 20, 40, 0.28); border: 1px solid var(--line); }
+.stage { background: var(--surface); padding: clamp(18px, 5vw, 56px); margin-bottom: 48px; overflow: hidden; }
+.browser { max-width: 880px; margin: 0 auto; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 0 var(--line), 0 24px 48px -24px rgba(16, 20, 40, 0.28); border: 1px solid var(--line); }
 .browser .bar { display: flex; align-items: center; gap: 12px; height: 34px; padding: 0 12px; background: var(--frame); }
 .browser .dots { display: flex; gap: 6px; }
 .browser .dots i { width: 9px; height: 9px; border-radius: 50%; background: #3a3d45; display: block; }
@@ -224,32 +218,33 @@ section { scroll-margin-top: 72px; }
 /* Body columns */
 .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 56px; }
 @media (max-width: 820px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.block { border-top: 1px solid var(--fg); padding-top: 14px; }
 .block h4 { margin: 0 0 14px; font-size: 13px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-.list li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; }
-.list li::before { content: ""; width: 6px; height: 6px; margin-top: 10px; background: var(--fg); }
+.list li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 6px; }
+.list li::before { content: "–"; color: var(--muted); }
 .list b { font-weight: 600; }
-.ai { background: var(--accent-soft); border-radius: 6px; padding: 24px clamp(18px, 3vw, 28px); }
+.ai { border-top-color: var(--accent); }
 .ai h4 { color: var(--accent); }
-.ai .list li::before { background: var(--accent); }
+.ai .list li::before { color: var(--accent); }
 
-.stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 40px; }
+.stack { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); }
 .extra { margin-top: 48px; }
 .links { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 14px; }
 .links a { text-decoration: none; border-bottom: 1px solid var(--fg); padding-bottom: 1px; }
 .links .private { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
 
 /* Diagrams */
-.diagram { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); padding: 24px; }
+.diagram { overflow-x: auto; }
 .diagram-title { margin: 0 0 16px; font-size: 13px; color: var(--muted); }
 .flow { display: flex; align-items: stretch; gap: 0; min-width: 760px; }
-.flow .step { flex: 1; border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; font-size: 13px; line-height: 1.45; background: var(--bg); }
+.flow .step { flex: 1; border: 1px solid var(--line); padding: 10px 12px; font-size: 13px; line-height: 1.45; background: var(--bg); }
 .flow .step .n { display: block; font: 11px var(--font-mono); color: var(--muted); margin-bottom: 4px; }
 .flow .step.human { border-color: var(--fg); background: var(--surface); }
 .flow .arrow { flex: 0 0 22px; display: grid; place-items: center; color: var(--muted); font-size: 13px; }
 .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; font-size: 12px; color: var(--muted); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
-.legend i { width: 12px; height: 12px; border: 1px solid var(--line); background: var(--bg); display: inline-block; border-radius: 2px; }
+.legend i { width: 12px; height: 12px; border: 1px solid var(--line); background: var(--bg); display: inline-block; }
 .legend i.h { border-color: var(--fg); background: var(--surface); }
 
 .roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; min-width: 0; }
@@ -260,7 +255,7 @@ section { scroll-margin-top: 72px; }
 .roles p { margin: 0; color: var(--muted); }
 
 .arch { display: grid; grid-template-columns: repeat(3, minmax(170px, 1fr)); gap: 0 28px; min-width: 620px; position: relative; }
-.arch .node { border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; background: var(--bg); font-size: 13px; line-height: 1.5; position: relative; }
+.arch .node { border: 1px solid var(--line); padding: 12px 14px; background: var(--bg); font-size: 13px; line-height: 1.5; position: relative; }
 .arch .node b { display: block; font-size: 14px; margin-bottom: 2px; }
 .arch .node .mono { font-size: 11px; color: var(--muted); }
 .arch .node.mine { border-color: var(--accent); background: var(--accent-soft); }
@@ -272,7 +267,7 @@ section { scroll-margin-top: 72px; }
 .skills { display: grid; grid-template-columns: minmax(0, 1fr); margin-bottom: clamp(72px, 10vw, 120px); }
 .skill-row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 @media (max-width: 620px) { .skill-row { grid-template-columns: minmax(0, 1fr); } }
-.skill-row .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-row .chips { display: flex; flex-wrap: wrap; gap: 4px 22px; }
 
 /* Contact */
 .contact { padding-block: 0 clamp(64px, 10vw, 112px); }
@@ -280,8 +275,8 @@ section { scroll-margin-top: 72px; }
 .contact-grid > * { padding: 14px 0; border-bottom: 1px solid var(--line); min-width: 0; }
 .contact-grid .label { padding-top: 19px; }
 .contact-grid .val { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; overflow-wrap: anywhere; }
-.copy { font: 500 12px var(--font-mono); background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
-.copy:hover { color: var(--fg); border-color: var(--muted); }
+.copy { font: 500 12px var(--font-mono); background: transparent; border: 0; border-bottom: 1px solid var(--line); color: var(--muted); padding: 0 0 1px; cursor: pointer; }
+.copy:hover { color: var(--fg); border-bottom-color: var(--fg); }
 .site-footer { border-top: 1px solid var(--line); padding-block: 24px; font-size: 12px; color: var(--muted); }
 </style>
 </head>
@@ -306,7 +301,7 @@ section { scroll-margin-top: 72px; }
     <p class="role">Software Developer</p>
     <p class="lede">웹 서비스, AI 에이전트, 컴퓨터 비전 프로젝트를 기획부터 구현까지 직접 만들어 왔습니다. 문제를 작게 나누고, 실제로 동작하는 시스템으로 완성하는 일을 좋아합니다.</p>
     <div class="hero-meta">
-      <div><span class="label">Focus</span><span class="tracks" style="display:inline-flex;flex-wrap:wrap;gap:6px"><span class="track">Web · Full-stack</span><span class="track">AI Agent</span><span class="track">Computer Vision</span></span></div>
+      <div><span class="label">Focus</span><span class="tracks" style="display:inline-flex;flex-wrap:wrap;gap:4px 18px"><span class="track">Web · Full-stack</span><span class="track">AI Agent</span><span class="track">Computer Vision</span></span></div>
       <div><span class="label">School</span><span>창신대학교 컴퓨터 전공</span></div>
     </div>
   </div>
@@ -444,7 +439,7 @@ section { scroll-margin-top: 72px; }
           <p class="summary">송금하는 순간 AI가 거래의 위험도를 분석하고, 위험한 거래는 경고하거나 보호자 승인을 거치게 해 금융 취약계층의 사기 피해를 막는 서비스입니다.</p>
         </div>
         <dl class="spec">
-          <dt>기간</dt><dd>2026.03 – 진행 중 (캡스톤 디자인)</dd>
+          <dt>기간</dt><dd>2026.03 – 진행 중</dd>
           <dt>구분</dt><dd>팀 프로젝트 · 5명</dd>
           <dt>담당</dt><dd>송금·거래 백엔드, AI 모델과 추론 서버, 전체 CRUD (8개 파일, 56개 함수)</dd>
           <dt>형태</dt><dd>웹 애플리케이션</dd>
@@ -513,7 +508,7 @@ section { scroll-margin-top: 72px; }
           <p class="summary">카메라에 비친 쓰레기를 배터리, 금속, 판지, 유리, 플라스틱 5가지로 실시간 분류해 웹 화면에 표시하고, 탐지 기록을 차트와 CSV로 정리하는 모니터링 서비스입니다.</p>
         </div>
         <dl class="spec">
-          <dt>기간</dt><dd>2025.12 (설계 프로젝트)</dd>
+          <dt>기간</dt><dd>2025.12</dd>
           <dt>구분</dt><dd>팀 프로젝트 · 2명, 팀장</dd>
           <dt>형태</dt><dd>웹 애플리케이션 (Flask)</dd>
           <dt>분류</dt><dd class="mono" style="font-size:13px">battery · metal · cardboard · glass · plastic</dd>
@@ -564,7 +559,7 @@ section { scroll-margin-top: 72px; }
           <p class="summary">카메라 속 얼굴의 표정을 7가지 감정으로 분류하고, 감정마다 다른 색의 상자와 얼굴 윤곽 그림으로 실시간 표시하는 프로그램입니다.</p>
         </div>
         <dl class="spec">
-          <dt>기간</dt><dd>2026.06 (컴퓨터비전 과목 과제)</dd>
+          <dt>기간</dt><dd>2026.06</dd>
           <dt>구분</dt><dd>개인 프로젝트</dd>
           <dt>형태</dt><dd>데스크톱 실시간 애플리케이션</dd>
           <dt>성능</dt><dd>FER2013 기준 Top-1 정확도 약 70%</dd>
